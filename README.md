@@ -1,3 +1,3 @@
-(˘･_･˘)
+# A Text Mining project (or not) (˘･_･˘)
 
-A Text Mining project (or not)
+mhmm
