@@ -1,2 +1,2 @@
-# Text-Mining-EComWeb
-A Text Mining project
+(˘･_･˘)
+A Text Mining project (or not)
