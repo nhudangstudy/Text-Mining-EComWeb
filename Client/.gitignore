@@ -1,6 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 .vs/
-
+API/obj/
 # Compiled output
 /dist
 /tmp
