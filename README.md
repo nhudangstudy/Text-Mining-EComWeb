@@ -1,7 +1,3 @@
-Here is a draft of your README file based on the project structure you've shared:
-
----
-
 # TextMiningEcomWeb
 
 ## Project Overview
