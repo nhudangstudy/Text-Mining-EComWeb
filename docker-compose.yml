@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: lilalo_db
+    ports:
+      - "1443:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=LiveLaughLove@001
+    restart: unless-stopped
+    networks:
+      - mssql_network
+
+networks:
+  mssql_network:
+    driver: bridge

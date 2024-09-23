@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoogleApi.Drive</name>
+    </assembly>
+    <members>
+        <member name="M:GoogleApi.Drive.GoogleDriveApi.DeleteFileOrFolder(System.String)">
+            <summary>
+            Xóa hẳn tệp hoặc thư mục. Nếu xóa thư mục thì toàn bộ tệp và thư mục con trong thư mục cũng sẽ bị xóa theo.
+            </summary>
+            <param name="fileId">Id của tệp hoặc thư mục</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleApi.Drive.GoogleDriveApi.MoveFileOrFolder(System.String,System.String,System.String)">
+            <summary>
+            Di chuyển tệp sang nơi khác.
+            </summary>
+            <param name="fileId"></param>
+            <param name="newFolderId"></param>
+            <param name="oldFolderId">Nếu cung cấp trường này thì xử lý sẽ nhanh hơn</param>
+        </member>
+    </members>
+</doc>
