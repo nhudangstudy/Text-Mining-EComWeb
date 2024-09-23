@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" [ngClass]="{'hidden-navbar': !isNavbarVisible}">
+    <div class="container-fluid px-8"> <!-- Add padding using px-4 -->
+      <!-- Brand Logo -->
+      <h1 class="navbar-brand" routerLink="/" style="font-size: 3rem;">
+        <span class="text-secondary font-anton">l</span>
+        <span class="text-primary font-anton">okey</span>
+        <span class="text-secondary font-anton">tech</span>
+      </h1>
+  
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar Links and Content -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Left-aligned Nav Links -->
+        <ul class="navbar-nav me-auto" style="font-size: 1.2rem;">
+          <li class="nav-item">
+            <a class="nav-link font-actor" routerLink="/shop">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-actor" routerLink="/onsale">On Sale</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-actor" routerLink="/newarrivals">New Arrivals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-actor" routerLink="/brands">Brands</a>
+          </li>
+        </ul>
+  
+        <!-- Search Bar -->
+        <form class="d-flex me-auto" role="search" style="flex-grow: 1; max-width: 400px;">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search for products..." aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">
+              <i class="bi bi-search"></i> <!-- Search Icon inside the button -->
+            </button>
+          </div>
+        </form>
+  
+        <!-- Shopping Cart and User Icons on the Right -->
+        <ul class="navbar-nav ms-auto" style="font-size: 1.5rem;">
+          <!-- Shopping Cart Icon -->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart">
+              <i class="bi bi-cart"></i>
+            </a>
+          </li>
+  
+          <!-- User Icon (Conditionally showing login/user) -->
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="!isLoggedIn" routerLink="/login">
+              <i class="bi bi-person"></i>
+            </a>
+            <a class="nav-link" *ngIf="isLoggedIn" routerLink="/profile">
+              <i class="bi bi-person-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

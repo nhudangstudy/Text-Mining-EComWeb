@@ -12,7 +12,11 @@ namespace API.Repositories
 
         public async Task DeleteLastAsync(string accountId)
         {
-            var lastItem = await entities.LastOrDefaultAsync(p => p.AccountId == accountId);
+            var lastItem = await entities
+                .Where(p => p.AccountId == accountId)
+                .OrderByDescending(p => p.ExpiredTime) // Replace with the appropriate field to sort by
+                .LastOrDefaultAsync();
+
             if (lastItem is null)
             {
                 return;

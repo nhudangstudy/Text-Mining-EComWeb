@@ -113,6 +113,7 @@ builder.Services.AddSwaggerGen(options =>
     options.AddSecurityDefinition(OpenAPI.SecurityScheme.Scheme, OpenAPI.SecurityScheme);
     options.AddSecurityRequirement(OpenAPI.SecurityRequirement);
     options.AutoMapping();
+    options.DocumentFilter<SetHostAndSchemesFilter>();
 });
 
 builder.Services.AddHttpContextAccessor();
