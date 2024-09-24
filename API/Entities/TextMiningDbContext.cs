@@ -23,11 +23,10 @@ public partial class TextMiningDbContext : DbContext
 
     public virtual DbSet<AppScope> AppScopes { get; set; }
 
-    public virtual DbSet<Test> Tests { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost,1443;Database=TextMining;User Id=sa;Password=LiveLaughLove@001;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:LLL");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -97,11 +96,18 @@ public partial class TextMiningDbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<Test>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Test");
+            entity.ToTable("User");
+
+            entity.Property(e => e.Email).HasMaxLength(128);
+            entity.Property(e => e.FirstName).IsUnicode(false);
+            entity.Property(e => e.LastName).IsUnicode(false);
+
+            entity.HasOne(d => d.EmailNavigation).WithMany(p => p.Users)
+                .HasForeignKey(d => d.Email)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_User_APP_Account");
         });
 
         OnModelCreatingPartial(modelBuilder);
