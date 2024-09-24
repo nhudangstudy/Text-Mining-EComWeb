@@ -17,8 +17,8 @@ namespace API.Docs
             Description = "<p>Documentation API of <b>Text Mining Project</b> has been written by Live Laugh Love.</p><p><b><i>This is an internal resource. Do not share it in any way.</i></b></p><p>You should read carefully the descriptions, response status codes and arguments request belong to each API Resource. It take your time, but you will avoid a lot of bugs afterward.</p><b>The application case sensitive.</b>",
             Contact = new OpenApiContact
             {
-                Name = "anhhoangdev",
-                Email = "anhth21416c@st.uel.edu.vn"
+                Name = "nhudangstudy, anhhoangdev, cocaa",
+                Email = "nhucnh21416c@st.uel.edu.vn, anhth21416c@st.uel.edu.vn, hienttm21416c@st.uel.edu.vn"
             }
         };
         public static readonly OpenApiSecurityScheme SecurityScheme = new()
