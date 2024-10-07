@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" [ngClass]="{'hidden-navbar': !isNavbarVisible}">
     <div class="container-fluid px-8"> <!-- Add padding using px-4 -->
       <!-- Brand Logo -->
-      <h1 class="navbar-brand" routerLink="/" style="font-size: 3rem;">
+      <h1 class="navbar-brand ms-4" routerLink="/" style="font-size: 3rem;">
         <span class="text-secondary font-anton">l</span>
         <span class="text-primary font-anton">okey</span>
         <span class="text-secondary font-anton">tech</span>
@@ -17,16 +17,16 @@
         <!-- Left-aligned Nav Links -->
         <ul class="navbar-nav me-auto" style="font-size: 1.2rem;">
           <li class="nav-item">
-            <a class="nav-link font-actor" routerLink="/shop">Shop</a>
+            <a class="nav-link font-actor" routerLink="/landing" fragment="intro">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link font-actor" routerLink="/onsale">On Sale</a>
+            <a class="nav-link font-actor" routerLink="/landing" fragment="specialoffer">On Sale</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link font-actor" routerLink="/newarrivals">New Arrivals</a>
+            <a class="nav-link font-actor" routerLink="/landing" fragment="featured">New Arrivals</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link font-actor" routerLink="/brands">Brands</a>
+            <a class="nav-link font-actor" routerLink="/landing" fragment="newsletter">Brands</a>
           </li>
         </ul>
   

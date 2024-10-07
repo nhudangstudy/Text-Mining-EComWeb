@@ -12,11 +12,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 
 
 @NgModule({
   declarations: [/* Your components here */
-    AppComponent, LoginComponent, DashboardComponent, HeaderComponent, FooterComponent, LandingComponent
+    AppComponent, LoginComponent, DashboardComponent, HeaderComponent, FooterComponent, LandingComponent, ProductCardComponent, ReviewCardComponent
   ],
   imports: [
     BrowserModule,

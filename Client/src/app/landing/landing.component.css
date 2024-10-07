@@ -8,4 +8,164 @@
     top: 0;
     transition: top 0.3s ease-in-out; /* Smooth transition for the navbar */
   }
+
+
+  #intro {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
   
+  #intro h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  #intro p.lead {
+    font-size: 1.2rem;
+  }
+  
+  #intro .btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  
+
+  
+  /* Button primary override */
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+}
+
+
+/* Responsive font size adjustments for mobile view */
+@media (max-width: 768px) {
+  #intro h1 {
+    font-size: 2.5rem;
+  }
+  #intro p {
+    font-size: 1.1rem;
+  }
+
+  #intro .container {
+    text-align: center;
+  }
+
+  #intro .scroll-down {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+#intro h1, #intro p, #intro .btn, #intro .row {
+  text-align: left;
+}
+
+
+#feedback {
+  background-color: #f8f9fa;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.testimonial {
+  padding: 15px;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.review-card {
+  font-family: Arial, sans-serif;
+}
+
+.stars {
+  margin-bottom: 8px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 20px;
+}
+
+.filled {
+  color: #FFD700; /* Gold color for filled stars */
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.verified-badge {
+  color: green;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.review-text {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+
+/* Styling for consistency between input field and button */
+#newsletter .input-group {
+  width: 100%; /* Ensures both input and button occupy the same width */
+}
+
+#newsletter .input-group .input-group-text {
+  border-radius: 50px 0 0 50px; /* Left-rounded icon container */
+  height: 50px;
+}
+
+#newsletter .form-control {
+  border-radius: 0; /* Removing the rounded corners from input */
+  height: 50px;
+}
+
+#newsletter .btn {
+  border-radius: 0 50px 50px 0; /* Right-rounded button */
+  height: 50px; /* Ensuring consistent height */
+}
+
+.text-gray {
+  color: #6c757d; /* Gray color */
+  text-decoration: none; /* Removes underline */
+}
+
+.text-gray:hover {
+  color: #5a6268; /* Slightly darker gray on hover */
+  text-decoration: none; /* Keeps underline removed on hover */
+}
+
+.no-underline {
+  text-decoration: none; /* Ensures no underline */
+}
+
+a.no-underline:hover {
+  text-decoration: none; /* Prevents underline on hover */
+}
+
