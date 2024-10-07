@@ -23,6 +23,22 @@ public partial class TextMiningDbContext : DbContext
 
     public virtual DbSet<AppScope> AppScopes { get; set; }
 
+    public virtual DbSet<Brand> Brands { get; set; }
+
+    public virtual DbSet<Category> Categories { get; set; }
+
+    public virtual DbSet<Product> Products { get; set; }
+
+    public virtual DbSet<ProductColor> ProductColors { get; set; }
+
+    public virtual DbSet<ProductImage> ProductImages { get; set; }
+
+    public virtual DbSet<ProductPriceHistory> ProductPriceHistories { get; set; }
+
+    public virtual DbSet<Review> Reviews { get; set; }
+
+    public virtual DbSet<SubCategory> SubCategories { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -94,6 +110,106 @@ public partial class TextMiningDbContext : DbContext
                         j.ToTable("APP_Account_Scope");
                         j.IndexerProperty<string>("AccountId").HasMaxLength(128);
                     });
+        });
+
+        modelBuilder.Entity<Brand>(entity =>
+        {
+            entity.ToTable("Brand");
+
+            entity.Property(e => e.BrandName).HasMaxLength(128);
+        });
+
+        modelBuilder.Entity<Category>(entity =>
+        {
+            entity.ToTable("Category");
+        });
+
+        modelBuilder.Entity<Product>(entity =>
+        {
+            entity.HasKey(e => e.Asin);
+
+            entity.ToTable("Product");
+
+            entity.Property(e => e.Asin)
+                .HasMaxLength(50)
+                .HasColumnName("ASIN");
+            entity.Property(e => e.OwnedBy).HasMaxLength(128);
+            entity.Property(e => e.ProductName).HasMaxLength(512);
+
+            entity.HasOne(d => d.SubCategory).WithMany(p => p.Products)
+                .HasForeignKey(d => d.SubCategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Product_SubCategory");
+        });
+
+        modelBuilder.Entity<ProductColor>(entity =>
+        {
+            entity.ToTable("ProductColor");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Asin)
+                .HasMaxLength(50)
+                .HasColumnName("ASIN");
+            entity.Property(e => e.ColorHex).HasMaxLength(10);
+
+            entity.HasOne(d => d.AsinNavigation).WithMany(p => p.ProductColors)
+                .HasForeignKey(d => d.Asin)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ProductColor_Product");
+        });
+
+        modelBuilder.Entity<ProductImage>(entity =>
+        {
+            entity.ToTable("ProductImage");
+
+            entity.Property(e => e.Asin)
+                .HasMaxLength(50)
+                .HasColumnName("ASIN");
+
+            entity.HasOne(d => d.AsinNavigation).WithMany(p => p.ProductImages)
+                .HasForeignKey(d => d.Asin)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ProductImage_Product");
+        });
+
+        modelBuilder.Entity<ProductPriceHistory>(entity =>
+        {
+            entity.ToTable("ProductPriceHistory");
+
+            entity.Property(e => e.Asin)
+                .HasMaxLength(50)
+                .HasColumnName("ASIN");
+
+            entity.HasOne(d => d.AsinNavigation).WithMany(p => p.ProductPriceHistories)
+                .HasForeignKey(d => d.Asin)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ProductPriceHistory_Product");
+        });
+
+        modelBuilder.Entity<Review>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Asin)
+                .HasMaxLength(50)
+                .HasColumnName("ASIN");
+            entity.Property(e => e.ImageUrl).HasMaxLength(500);
+            entity.Property(e => e.OwnedBy).HasMaxLength(128);
+            entity.Property(e => e.Title).HasMaxLength(500);
+
+            entity.HasOne(d => d.AsinNavigation).WithMany(p => p.Reviews)
+                .HasForeignKey(d => d.Asin)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reviews_Product");
+        });
+
+        modelBuilder.Entity<SubCategory>(entity =>
+        {
+            entity.ToTable("SubCategory");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.SubCategories)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SubCategory_Category");
         });
 
         modelBuilder.Entity<User>(entity =>

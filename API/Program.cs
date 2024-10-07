@@ -44,6 +44,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<ScopeRepository>().As<IScopeRepository>();
     containerBuilder.RegisterType<AuthenticationRepository>().As<IAuthenticationRepository>();
     containerBuilder.RegisterType<RefreshTokenRepository>().As<IRefreshTokenRepository>();
+    containerBuilder.RegisterType<UserRepository>().As<IUserRepository>();
 
 
     // Service
@@ -54,6 +55,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<TokenGenerateService>().As<ITokenGenerateService>();
     containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
     containerBuilder.RegisterType<AccountService>().As<IAccountService>();
+    containerBuilder.RegisterType<UserService>().As<IUserService>();
     // Register other dependencies here
 
 
@@ -64,6 +66,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         cfg.AddProfile<RefreshTokenProfile>();
         cfg.AddProfile<AccountProfile>();
         cfg.AddProfile<AuthenticationProfile>();
+        cfg.AddProfile<UserProfile>();
+
     }).CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
 });
 
