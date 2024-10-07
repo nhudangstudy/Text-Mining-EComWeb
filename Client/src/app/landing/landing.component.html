@@ -1,52 +1,190 @@
-  
 <app-header [isNavbarVisible]="isNavbarVisible"></app-header>
-  <!-- Introduction Section -->
-  <section id="intro" class="pt-5 mt-5">
-    <div class="container text-center">
-      <h1>Ready for the Technology Explosion?</h1>
-      <p>Browse through our range of meticulously crafted products.</p>
-    </div>
-  </section>
-  
-  <!-- Featured Products Section -->
-  <section id="featured" class="pt-5">
-    <div class="container">
-      <h2>New Arrivals</h2>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card">
-            <img src="path-to-image" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Xiaomi Redmi Note 13</h5>
-              <p class="card-text">$120</p>
-            </div>
+<!-- Introduction Section -->
+<section
+  id="intro"
+  class="d-flex align-items-center text-white vh-100"
+  style="
+    background-size: cover;
+    background-position: right center;
+    background-attachment: fixed;
+  "
+>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="mb-4 text-primary font-anton">
+          READY FOR THE<br />TECHNOLOGY EXPLOSION?
+        </h1>
+
+        <p class="lead text-dark">
+          Browse through our diverse range of meticulously crafted garments,
+          designed to bring out your individuality and cater to your sense of
+          style.
+        </p>
+        <div class="row my-4">
+          <div class="col-md-4 text-left text-dark">
+            <p class="font-actor"><strong>200+</strong><br>International Brands</p>
+          </div>
+          <div class="col-md-4 text-left text-dark">
+            <p class="font-actor"><strong>2,000+</strong><br>High-Quality Products</p>
+          </div>
+          <div class="col-md-4 text-left text-dark">
+            <p class="font-actor"><strong>30,000+</strong><br>Happy Customers</p>
           </div>
         </div>
-        <!-- Repeat product cards -->
+        <a href="#featured" class="btn btn-primary btn-outline-dark mt-20 text-light text-left rounded-pill"
+          >Shop Now</a
+        >
       </div>
     </div>
-  </section>
-  
-  <!-- Advertised Poster Section -->
-  <section id="advert" class="pt-5 text-center">
-    <div class="container">
-      <img src="assets/Apple_ads.png" alt="Advert" class="img-fluid">
+  </div>
+
+    <img src="assets/Intro_ads.png" alt="Background" class="position-absolute top-0 end-0 vh-100" style="object-fit: cover; width: 50%;">
+    <img src="assets/Intro_banner.png" alt="Banner" class="position-absolute bottom-0 start-0 w-100" style="z-index: 2;">
+  <div class="scroll-down">
+    <a
+      href="#featured"
+      class="bi bi-chevron-double-down text-white"
+      style="font-size: 2rem"
+    ></a>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section id="featured" class="pt-5">
+  <div class="container">
+    <h2 class="text-center mb-5">NEW ARRIVALS</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-lg-3" *ngFor="let product of productNewArrivals">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
     </div>
-  </section>
-  
-  <!-- Feedbacks Section -->
-  <section id="feedback" class="pt-5">
-    <div class="container">
-      <h2>Our Happy Customers</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="testimonial">
-            <p>"Amazing service and products!"</p>
-            <p>- Sarah M.</p>
+  </div>
+</section>
+
+
+
+<!-- Advertised Poster Section -->
+<section id="advert" class="pt-5 text-center" style="object-fit: cover; width: 100%;">
+  <div class="container">
+    <img src="assets/Apple_ads.png" alt="Advert" class="img-fluid"  />
+  </div>
+</section>
+
+<!-- Special Offer Section -->
+<section id="specialoffer" class="pt-5">
+  <div class="container">
+    <h2 class="text-center text-bold mb-5">SPECIAL OFFER</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-lg-3" *ngFor="let product of productSpecialOffers">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Feedbacks Section -->
+<!-- Feedbacks Section -->
+<section id="feedback" class="pt-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Happy Customers</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let review of reviews.slice(0, 3)">
+            <app-review-card [review]="review"></app-review-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Newsletter Subscription Section -->
+<section id="newsletter" class="bg-black text-white py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left part: Text -->
+      <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+        <h2 class="mb-0">STAY UP TO DATE ABOUT <br> OUR LATEST OFFERS</h2>
+      </div>
+
+      <!-- Right part: Email Input and Subscribe Button -->
+      <div class="col-md-6 text-center">
+        <form class="d-flex flex-column align-items-center" style="max-width: 400px; margin: 0 auto;">
+          <div class="input-group mb-3 w-100">
+            <span class="input-group-text bg-white border-0 rounded-pill-start" style="padding: 0 15px;">
+              <i class="bi bi-envelope"></i>
+            </span>
+            <input 
+              type="email" 
+              class="form-control" 
+              placeholder="Enter your email address"
+              aria-label="Enter your email address"
+              style="border-radius: 0 50px 50px 0; height: 50px;"
+            >
           </div>
-        </div>
-        <!-- Repeat testimonials -->
+          <button class="btn btn-light rounded-pill w-100 text-dark" style="height: 50px;">Subscribe to Newsletter</button>
+        </form>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>
+
+
+
+
+<footer class="bg-light pt-5 pb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h1 style="font-size: 2rem;">
+          <span class="text-secondary font-anton">l</span>
+          <span class="text-primary font-anton">okey</span>
+          <span class="text-secondary font-anton">tech</span>
+        </h1>
+        <p class="text-dark font-actor">We have smartphone to help you live a smarter and better life.</p>
+        <div class="social-icons">
+          <a href="#" class="text-dark font-actor me-2"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-dark font-actor me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-dark font-actor me-2"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-dark font-actor"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">Company</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-gray font-actor no-underline">About</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Features</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Works</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Career</a></li>
+        </ul>
+      </div>
+    
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">Help</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-gray font-actor no-underline">Customer Support</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Delivery Details</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Terms & Conditions</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Privacy Policy</a></li>
+        </ul>
+      </div>
+    
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">FAQ</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-gray font-actor no-underline">Account</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Manage Deliveries</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Orders</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Payments</a></li>
+        </ul>
+      </div>
+    
+      <div class="col-md-3">
+        <h5 class="text-dark font-actor">Resources</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-gray font-actor no-underline">Free eBooks</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Development Tutorial</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">How to Blog</a></li>
+          <li><a href="#" class="text-gray font-actor no-underline">Youtube Playlist</a></li>
+        </ul>
+      </div>
+

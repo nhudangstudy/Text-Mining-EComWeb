@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-body">
+      <!-- Star rating section -->
+      <div class="rating my-2">
+        <i class="bi bi-star-fill" *ngFor="let star of [].constructor(5); let i = index" [ngClass]="{'text-warning': i < review.starRating, 'text-muted': i >= review.starRating}"></i>
+      </div>
+      
+      <!-- Reviewer name and verified icon -->
+      <div class="reviewer-info d-flex align-items-center">
+        <h5 class="card-title font-actor mb-0">{{ review.reviewerName }}</h5>
+        <div class="verified-section ms-2" *ngIf="review.isVerified">
+          <i class="bi bi-check-circle verified-icon"></i>
+        </div>
+      </div>
+
+      <!-- Review text with see-more functionality -->
+      <p class="review-text font-actor mt-3">
+        {{ isExpanded ? review.reviewText : (review.reviewText | slice:0:100) }}
+        <span *ngIf="!isExpanded && review.reviewText.length > 100">
+          ... <a href="javascript:void(0)" (click)="toggleText()">See more</a>
+        </span>
+      </p>
+  
+      <p class="review-text font-actor mt-3" *ngIf="isExpanded && review.reviewText.length > 100">
+        <a href="javascript:void(0)" (click)="toggleText()">See less</a>
+      </p>
+    </div>
+</div>

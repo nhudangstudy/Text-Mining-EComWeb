@@ -1,0 +1,74 @@
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, height 0.3s ease; /* Smooth transition for height changes */
+    margin-bottom: 10px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .card-body {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Icon styling */
+  .verified-icon {
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .rating i {
+    font-size: 20px;
+    margin-right: 2px;
+  }
+  
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Truncate text and limit the height for normal state */
+  .text-truncated {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Normal state for cards with the same height */
+  .normal {
+    max-height: 150px; /* Adjust this as per your design */
+  }
+  
+  /* Expanded state for when "See more" is clicked */
+  .expanded {
+    max-height: none; /* Allow full height */
+  }
+  
+  /* Reviewer text styling */
+  .review-text {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  a {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    
+  }
+  
+  .font-actor {
+    font-family: "Actor", sans-serif;
+    
+  }
+  
