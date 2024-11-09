@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <!-- KPI Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center p-3 kpi-card">
+                <h2>Total</h2>
+                <p>{{ totalComments }}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3 kpi-card">
+                <h2>Positive</h2>
+                <p>{{ totalPositiveComments }}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3 kpi-card">
+                <h2>Neutral</h2>
+                <p>{{ totalNeutralComments }}</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3 kpi-card">
+                <h2>Negative</h2>
+                <p>{{ totalNegativeComments }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sentiment Analysis Chart -->
+    <div class="card mb-4 p-4 section-card">
+        <h4>Sentiment Analysis</h4>
+        <div style="height: 400px;">
+            <ngx-charts-pie-chart
+                [view]="[700,400]"
+                [results]="sentimentChartData"
+                [legend]="true"
+                [labels]="true"
+                [doughnut]="false"
+                [gradient]="false">
+            </ngx-charts-pie-chart>
+        </div>
+    </div>
+
+    <!-- Detailed Breakdown -->
+    <div class="row">
+        <div class="col-md-6">
+          <div class="card p-4 section-card">
+            <h4>Review Summary</h4>
+            <!-- <apx-chart
+              [series]="reviewSummaryChartOptions.series"
+              [chart]="reviewSummaryChartOptions.chart"
+              [labels]="reviewSummaryChartOptions.labels"
+              [colors]="reviewSummaryChartOptions.colors"
+              [legend]="reviewSummaryChartOptions.legend"
+              [responsive]="reviewSummaryChartOptions.responsive">
+            </apx-chart> -->
+            <div class="mt-3">
+              <p><span style="color: #28a745;">&#9679;</span> Positive {{ positivePercentage.toFixed(1) }}%</p>
+              <p><span style="color: #ffc107;">&#9679;</span> Neutral {{ neutralPercentage.toFixed(1) }}%</p>
+              <p><span style="color: #dc3545;">&#9679;</span> Negative {{ negativePercentage.toFixed(1) }}%</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card p-4 section-card">
+                <h4>Weekly Sentiment Report</h4>
+                <div class="mt-3">
+                    <p><strong>Positive Sentiments</strong>: {{ totalPositiveComments }}</p>
+                    <p><strong>Neutral Sentiments</strong>: {{ totalNeutralComments }}</p>
+                    <p><strong>Negative Sentiments</strong>: {{ totalNegativeComments }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

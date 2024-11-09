@@ -1,0 +1,106 @@
+<app-header></app-header>
+<div class="container mt-5 pt-5">
+  <!-- Breadcrumb Navigation -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ categoryName }}
+      </li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <!-- Filter Sidebar -->
+    <div class="col-md-3">
+      <h4 class="mb-3">Filters</h4>
+
+      <!-- Price Filter -->
+      <div class="filter-section mb-4">
+        <h5>Price</h5>
+        <nouislider
+          [(ngModel)]="filterOptions.priceRange"
+          [min]="50"
+          [max]="200"
+          [step]="1"
+          [connect]="true"
+        >
+        </nouislider>
+        <p class="mt-2">
+          Price Range: ${{ filterOptions.priceRange[0] }} - ${{ filterOptions.priceRange[1] }}
+        </p>
+      </div>
+
+      <!-- Brand Filter -->
+      <div class="filter-section mb-4">
+        <h5>Brand</h5>
+        <ul class="list-unstyled">
+          <li *ngFor="let brand of brandArray">
+            <span
+              (click)="selectBrand(brand.id)"
+              [ngClass]="{
+                'font-weight-bold': selectedBrandId === brand.id
+              }"
+              class="brand-filter-option"
+              style="cursor: pointer"
+            >
+              {{ brand.brandName }}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Apply Filter Button -->
+      <div class="d-flex justify-content-center">
+        <button
+          class="btn btn-dark rounded-pill w-100 text-light w-100 py-2"
+          (click)="applyFilter(filterOptions.priceRange)"
+        >
+          Apply Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Cards Section -->
+    <div class="col-md-9">
+      <div class="row">
+        <div
+          class="col-lg-4 col-md-6 col-sm-6 mb-4"
+          *ngFor="let product of products"
+          style="cursor: pointer"
+        >
+          <!-- Assuming you have a product card component -->
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      </div>
+
+      <!-- Pagination Controls -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <button class="page-link" (click)="goToPreviousPage()" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+      
+          <ng-container *ngFor="let page of getPaginationArray()">
+            <li *ngIf="page !== -1" class="page-item" [class.active]="page === currentPage">
+              <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+            </li>
+            <li *ngIf="page === -1" class="page-item disabled">
+              <span class="page-link">...</span>
+            </li>
+          </ng-container>
+      
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <button class="page-link" (click)="goToNextPage()" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      
+      
+    </div>
+  </div>
+</div>

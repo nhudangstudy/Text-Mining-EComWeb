@@ -1,0 +1,48 @@
+/* Hide the navbar when scrolling down */
+.hidden-navbar {
+    top: -70px; /* Move the navbar off-screen */
+    transition: top 0.3s ease-in-out; /* Smooth transition when hiding/showing */
+  }
+  
+  .navbar {
+    top: 0;
+    transition: top 0.3s ease-in-out; /* Smooth transition for the navbar */
+  }
+  
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #343a40; /* Dark background */
+    color: white; /* Light text color */
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #343a40; /* Dark background */
+    border: 1px solid #444; /* Darker border */
+    color: white; /* Light text color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    min-width: 150px; /* Ensure minimum width for better visibility */
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+    color: white; /* Light text color */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #495057; /* Darker shade for hover effect */
+  }
+  

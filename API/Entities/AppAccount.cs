@@ -15,6 +15,10 @@ public partial class AppAccount
 
     public virtual ICollection<AppRefreshToken> AppRefreshTokens { get; set; } = new List<AppRefreshToken>();
 
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+
+    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 
     public virtual ICollection<AppScope> Scopes { get; set; } = new List<AppScope>();

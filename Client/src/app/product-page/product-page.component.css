@@ -1,0 +1,169 @@
+#intro .btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  .limited-size {
+    max-width: 100%; /* Ensures the image does not exceed the container width */
+    max-height: 500px; /* Sets a maximum height to limit vertical size */
+    object-fit: contain; /* Maintains aspect ratio and prevents image distortion */
+  }
+    
+  /* Button primary override */
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px; /* Space between color circles */
+    margin-top: 10px; /* Adds space above the color circles */
+  }
+  .quantity-input {
+    width: 80px; /* Adjust width as needed */
+    text-align: center;
+  }
+  
+  .color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ddd; /* Ensures circles are visible */
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .color-circle:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+  }
+
+  .selected-color {
+    border: 3px solid #000; /* Highlights the selected color */
+  }
+
+  .product-description {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    color: #ff4a4a;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .nav-tabs .nav-link {
+    cursor: pointer;
+  }
+  
+  .rating .bi-star-fill {
+    font-size: 1.2rem;
+  }
+  
+  .btn-dark {
+    background-color: #333;
+    border: none;
+  }
+  
+  .review-card {
+    margin-bottom: 1.5rem;
+  }
+  
+
+  
+  /* Button primary override */
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+}
+
+
+
+.review-card {
+  font-family: Arial, sans-serif;
+}
+
+.stars {
+  margin-bottom: 8px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 20px;
+}
+
+.filled {
+  color: #FFD700; /* Gold color for filled stars */
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.verified-badge {
+  color: green;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.review-text {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+
+/* Styling for consistency between input field and button */
+#newsletter .input-group {
+  width: 100%; /* Ensures both input and button occupy the same width */
+}
+
+#newsletter .input-group .input-group-text {
+  border-radius: 50px 0 0 50px; /* Left-rounded icon container */
+  height: 50px;
+}
+
+#newsletter .form-control {
+  border-radius: 0; /* Removing the rounded corners from input */
+  height: 50px;
+}
+
+#newsletter .btn {
+  border-radius: 0 50px 50px 0; /* Right-rounded button */
+  height: 50px; /* Ensuring consistent height */
+}
+
+.text-gray {
+  color: #6c757d; /* Gray color */
+  text-decoration: none; /* Removes underline */
+}
+
+.text-gray:hover {
+  color: #5a6268; /* Slightly darker gray on hover */
+  text-decoration: none; /* Keeps underline removed on hover */
+}
+
+.no-underline {
+  text-decoration: none; /* Ensures no underline */
+}
+
+a.no-underline:hover {
+  text-decoration: none; /* Prevents underline on hover */
+}
+

@@ -20,4 +20,6 @@ public partial class Review
     public string ReviewContent { get; set; } = null!;
 
     public virtual Product AsinNavigation { get; set; } = null!;
+
+    public virtual AppAccount OwnedByNavigation { get; set; } = null!;
 }

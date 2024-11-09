@@ -9,6 +9,7 @@ namespace Common.IServices
 {
     public interface IUserService
     {
-        Task CreateNewUser(string email, CreateUpdateUserRequestModel createUpdateUserRequest);
+        Task<GetByIdUserModel?> GetUserByIdAsync(string email);
+        Task CreateNewUser(string email, CreateUpdateUserRequestModel model);
     }
 }

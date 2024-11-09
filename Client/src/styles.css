@@ -48,6 +48,8 @@
   color: #e74c3c !important;
 }
 
+
+
 /* Override Bootstrap's light color */
 .btn-light,
 .bg-light,
@@ -75,6 +77,11 @@
 
 .font-actor {
     font-family: 'Actor', sans-serif;
+}
+
+
+.text-light {
+  color: #f5f5f5 !important;  
 }
 
 

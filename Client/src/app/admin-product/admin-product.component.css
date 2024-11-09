@@ -1,0 +1,20 @@
+.container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  .btn {
+    margin-right: 5px;
+  }
+  

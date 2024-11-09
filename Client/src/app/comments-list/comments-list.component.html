@@ -1,0 +1,8 @@
+<div class="comments-list">
+    <app-review-card *ngFor="let comment of displayedReviews" [review]="comment"></app-review-card>
+    
+    <button *ngIf="hasMoreReviews()" class="btn btn-outline-secondary mt-3" (click)="loadMoreReviews()">
+      Load More Reviews
+    </button>
+  </div>
+  

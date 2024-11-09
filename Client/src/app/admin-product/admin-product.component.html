@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2>Product List</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <span [ngClass]="{'text-success': product.stock === 'In Stock', 'text-danger': product.stock === 'Out of Stock'}">
+              {{ product.stock }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm">Edit</button>
+            <button class="btn btn-outline-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

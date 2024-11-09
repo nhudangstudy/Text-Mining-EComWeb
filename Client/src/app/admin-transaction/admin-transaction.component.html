@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <h2>Latest Transaction</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Transaction ID</th>
+          <th>Date</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Document</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>
+            <div class="transaction-id">
+              <span class="icon">&#128176;</span> <!-- Replace with actual icon if needed -->
+              {{ transaction.id }}
+            </div>
+          </td>
+          <td>{{ transaction.date }}</td>
+          <td>{{ transaction.email }}</td>
+          <td>
+            <span [ngClass]="{'text-success': transaction.status === 'Completed', 'text-danger': transaction.status === 'Pending'}">
+              • {{ transaction.status }}
+            </span>
+          </td>
+          <td>
+            <a href="#">{{ transaction.document }}</a>
+          </td>
+          <td>{{ transaction.amount }}</td>
+          <td>
+            <button class="btn btn-link text-muted">...</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

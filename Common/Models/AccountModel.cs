@@ -9,7 +9,7 @@ namespace Common.Models
         public string ClientId { get; init; } = null!;
 
         [Required]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password)] //huhu
         public string Password { get; init; } = null!;
     }
 

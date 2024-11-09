@@ -1,0 +1,61 @@
+/* General Filter Section Styling */
+.filter-section h5 {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .filter-section ul {
+    padding-left: 0;
+  }
+  
+  .filter-section ul li a {
+    color: #6c757d;
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+  }
+  
+  .filter-section ul li a:hover {
+    color: black;
+  }
+  
+  .toggle-indicator {
+    float: right;
+  }
+  
+  /* Price Filter Customization */
+  .filter-section {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+  }
+  
+  .filter-section:last-child {
+    border-bottom: none;
+  }
+  
+  /* Apply Filter Button */
+  .btn-dark {
+    background-color: black;
+    border-color: black;
+    font-size: 14px;
+    border-radius: 25px;
+  }
+  
+
+
+  .brand-filter-option {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .brand-filter-option:hover {
+    background-color: #f0f0f0; /* Light hover effect */
+  }
+  
+  .font-weight-bold.text-primary {
+    background-color: #d1ecf1; /* Highlight background */
+    border-radius: 5px;
+  }
+  

@@ -1,0 +1,13 @@
+<!-- user-icon.component.html -->
+<div class="user-icon" (click)="isLoggedIn ? null : navigateToLogin()">
+  <i class="bi bi-person" style="color: black;"></i> <!-- Set icon color to black -->
+  <ng-container *ngIf="isLoggedIn">
+    <div class="dropdown">
+      <button class="dropbtn">User Options</button>
+      <div class="dropdown-content">
+        <a (click)="onProfile()">Profile</a>
+        <a (click)="onLogout()">Logout</a>
+      </div>
+    </div>
+  </ng-container>
+</div>

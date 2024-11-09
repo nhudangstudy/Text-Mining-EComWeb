@@ -11,5 +11,7 @@ public partial class ProductColor
 
     public string Asin { get; set; } = null!;
 
+    public bool IsArchived { get; set; }
+
     public virtual Product AsinNavigation { get; set; } = null!;
 }

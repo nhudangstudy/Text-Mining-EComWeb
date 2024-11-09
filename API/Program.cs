@@ -14,6 +14,7 @@ using System.Reflection;
 using AspNetCoreRateLimit;
 using ITBClub.API.Repositories;
 using Microsoft.Extensions.Configuration;
+using API.Repositories.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,14 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<AuthenticationRepository>().As<IAuthenticationRepository>();
     containerBuilder.RegisterType<RefreshTokenRepository>().As<IRefreshTokenRepository>();
     containerBuilder.RegisterType<UserRepository>().As<IUserRepository>();
+    containerBuilder.RegisterType<SubCategoryRepository>().As<ISubCategoryRepository>();
+    containerBuilder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
+    containerBuilder.RegisterType<BrandRepository>().As<IBrandRepository>();
+    containerBuilder.RegisterType<ProductRepository>().As<IProductRepository>();
+    containerBuilder.RegisterType<ProductColorRepository>().As<IProductColorRepository>();
+    containerBuilder.RegisterType<ProductImageRepository>().As<IProductImageRepository>();
+    containerBuilder.RegisterType<ProductPriceHistoryRepository>().As<IProductPriceHistoryRepository>();
+    containerBuilder.RegisterType<ReviewRepository>().As<IReviewRepository>();
 
 
     // Service
@@ -56,6 +65,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
     containerBuilder.RegisterType<AccountService>().As<IAccountService>();
     containerBuilder.RegisterType<UserService>().As<IUserService>();
+    containerBuilder.RegisterType<SubCategoryService>().As<ISubCategoryService>();
+    containerBuilder.RegisterType<CategoryService>().As<ICategoryService>();
+    containerBuilder.RegisterType<BrandService>().As<IBrandService>();
+    containerBuilder.RegisterType<ProductService>().As<IProductService>();
+    containerBuilder.RegisterType<ReviewService>().As<IReviewService>();
     // Register other dependencies here
 
 
@@ -67,6 +81,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         cfg.AddProfile<AccountProfile>();
         cfg.AddProfile<AuthenticationProfile>();
         cfg.AddProfile<UserProfile>();
+        cfg.AddProfile<SubCategoryProfile>();
+        cfg.AddProfile<CategoryProfile>();
+        cfg.AddProfile<BrandProfile>();
+        cfg.AddProfile<ProductProfile>();
+        cfg.AddProfile<ReviewProfile>();
 
     }).CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
 });
@@ -134,7 +153,7 @@ app.UseHttpsRedirection();
 if (true)
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options => options.SwaggerEndpoint($"{OpenAPI.Version}/swagger.json", "ITBClub API"));
+    app.UseSwaggerUI(options => options.SwaggerEndpoint($"{OpenAPI.Version}/swagger.json", "LiveLaughLove API"));
 }
 
 app.UseHttpsRedirection();

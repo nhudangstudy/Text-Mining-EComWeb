@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid px-8">
+    <!-- Brand Logo -->
+    <h1 class="navbar-brand ms-4" routerLink="/admin" style="font-size: 2.5rem">
+      <span class="text-danger font-anton">lo</span>
+      <span class="text-secondary font-anton">key</span>
+      <span class="text-danger font-anton">tech</span>
+    </h1>
+
+    <!-- Navbar Toggler for Mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links and Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Left-aligned Nav Links -->
+      <!-- Update links in app-header-admin component -->
+      <ul class="navbar-nav me-auto" style="font-size: 1.2rem">
+        <li class="nav-item">
+          <a class="nav-link font-actor" routerLink="/admin/overview"
+            >Overview</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-actor" routerLink="/admin/product">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-actor" routerLink="/admin/transaction"
+            >Transaction</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-actor" routerLink="/admin/report">Report</a>
+        </li>
+      </ul>
+
+      <!-- User Navigation -->
+      <ul class="navbar-nav ms-auto" style="font-size: 1.5rem">
+        <!-- User Icon (Conditionally showing login/user with dropdown) -->
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            (click)="toggleDropdown($event)" 
+            id="userDropdown"
+            role="button"
+          >
+            <i class="bi bi-person-circle"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li>
+              <button class="dropdown-item" (click)="logout()">Logout</button>
+            </li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
