@@ -52,7 +52,7 @@ This is a full-stack application for text mining and sentiment analysis on e-com
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-repo-link.git
+   git clone https://github.com/nhudangstudy/Text-Mining-EComWeb.git
    cd TextMiningEcomWeb
    ```
 
