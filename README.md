@@ -52,7 +52,7 @@ This is a full-stack application for text mining and sentiment analysis on e-com
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-repo-link.git
+   git clone https://github.com/nhudangstudy/Text-Mining-EComWeb.git
    cd TextMiningEcomWeb
    ```
 
@@ -79,6 +79,10 @@ This is a full-stack application for text mining and sentiment analysis on e-com
    - Install the necessary npm packages:
      ```bash
      npm install
+     ```
+     In case that does not work, you can try this instead:
+     ```bash
+     npm i --legacy-peer-deps
      ```
    - Run the Angular application:
      ```bash
