@@ -58,7 +58,9 @@ public partial class TextMiningDbContext : DbContext
 
         modelBuilder.Entity<AppAuthentication>(entity =>
         {
-            entity.ToTable("App_Authentication");
+            entity.HasKey(e => e.Id).HasName("PK_App_Authentication");
+
+            entity.ToTable("APP_Authentication");
 
             entity.Property(e => e.Code)
                 .HasMaxLength(6)
@@ -204,6 +206,8 @@ public partial class TextMiningDbContext : DbContext
                 .HasColumnName("ASIN");
             entity.Property(e => e.ImageUrl).HasMaxLength(500);
             entity.Property(e => e.OwnedBy).HasMaxLength(128);
+            entity.Property(e => e.ReviewDate).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Sentiment).HasMaxLength(50);
             entity.Property(e => e.Title).HasMaxLength(500);
 
             entity.HasOne(d => d.AsinNavigation).WithMany(p => p.Reviews)

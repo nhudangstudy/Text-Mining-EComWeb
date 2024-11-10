@@ -244,6 +244,7 @@ export interface ReviewResponseModel {
   starRating?: number;
   reviewContent?: string | null;
   ownedBy?: string | null;
+  sentiment?: string | null;
 }
 
 export interface SendRequestAuthenticationModel {

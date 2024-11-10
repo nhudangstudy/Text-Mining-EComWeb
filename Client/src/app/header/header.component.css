@@ -8,6 +8,9 @@
     top: 0;
     transition: top 0.3s ease-in-out; /* Smooth transition for the navbar */
   }
-  
+  .bi-person-circle {
+    font-size: 24px; /* Adjust size as needed */
+    padding: 8px; /* Add 8px padding */
+  }
 
   

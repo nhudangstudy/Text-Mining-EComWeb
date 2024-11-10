@@ -1,6 +1,7 @@
 // user-icon.component.ts
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-user-icon',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserIconComponent {
   @Input() isLoggedIn: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   navigateToLogin() {
     this.router.navigate(['/login']);
@@ -22,9 +23,7 @@ export class UserIconComponent {
   }
 
   onLogout() {
+    this.authService.logout();
     // Implement logout logic
-    console.log('User logged out');
-    this.isLoggedIn = false;
-    this.router.navigate(['/login']);
   }
 }

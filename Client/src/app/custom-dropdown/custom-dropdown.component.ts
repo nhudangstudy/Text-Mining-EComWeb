@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { MessageBoxService } from '../service/message-box-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-dropdown',
@@ -10,7 +11,7 @@ import { MessageBoxService } from '../service/message-box-service.service';
 export class CustomDropdownComponent {
   isOpen = false;
 
-  constructor(private authService: AuthService, private messageBoxService: MessageBoxService) {}
+  constructor(private authService: AuthService, private messageBoxService: MessageBoxService, private router: Router) {}
 
   toggleDropdown(): void {
     this.isOpen = !this.isOpen;
@@ -22,6 +23,5 @@ export class CustomDropdownComponent {
 
   logout() {
     this.authService.logout();
-    this.messageBoxService.info("Logout Sucessfully!!!")
   }
 }

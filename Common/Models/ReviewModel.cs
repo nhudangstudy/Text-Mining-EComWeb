@@ -15,6 +15,7 @@ namespace Common.Models
         public double StarRating { get; set; }
         public string ReviewContent { get; set; } = null!;
         public string OwnedBy { get; set; } = null!;
+        public string Sentiment { get; set; } = null!;
     }
 
     public class CreateReviewRequest
@@ -23,6 +24,7 @@ namespace Common.Models
         public string ImageUrl { get; set; } = null!;
         public double StarRating { get; set; }
         public string ReviewContent { get; set; } = null!;
+
     }
 
 }

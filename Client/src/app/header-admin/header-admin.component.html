@@ -1,10 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+  [ngClass]="{ 'hidden-navbar': !isNavbarVisible }"
+>
   <div class="container-fluid px-8">
+    <!-- Add padding using px-4 -->
     <!-- Brand Logo -->
-    <h1 class="navbar-brand ms-4" routerLink="/admin" style="font-size: 2.5rem">
-      <span class="text-danger font-anton">lo</span>
-      <span class="text-secondary font-anton">key</span>
-      <span class="text-danger font-anton">tech</span>
+    <h1 class="navbar-brand ms-4" routerLink="/" style="font-size: 3rem">
+      <span class="text-secondary font-anton">l</span>
+      <span class="text-primary font-anton">okey</span>
+      <span class="text-secondary font-anton">tech</span>
     </h1>
 
     <!-- Navbar Toggler for Mobile -->
@@ -23,7 +27,6 @@
     <!-- Navbar Links and Content -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Left-aligned Nav Links -->
-      <!-- Update links in app-header-admin component -->
       <ul class="navbar-nav me-auto" style="font-size: 1.2rem">
         <li class="nav-item">
           <a class="nav-link font-actor" routerLink="/admin/overview"
@@ -43,27 +46,13 @@
         </li>
       </ul>
 
-      <!-- User Navigation -->
+      <!-- Shopping Cart and User Icons on the Right -->
       <ul class="navbar-nav ms-auto" style="font-size: 1.5rem">
-        <!-- User Icon (Conditionally showing login/user with dropdown) -->
-        <li class="nav-item dropdown" *ngIf="isLoggedIn">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            (click)="toggleDropdown($event)" 
-            id="userDropdown"
-            role="button"
-          >
-            <i class="bi bi-person-circle"></i>
+        <li class="nav-item">
+          <a class="nav-link" >
+            <app-user-icon [isLoggedIn]="isLoggedIn"></app-user-icon>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-            <li>
-              <button class="dropdown-item" (click)="logout()">Logout</button>
-            </li>
-          </ul>
         </li>
-        
       </ul>
     </div>
   </div>

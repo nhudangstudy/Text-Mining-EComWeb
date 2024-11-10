@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../Model/product-model'; // Import Product interface
 import { Api } from 'src/myApi';
 
+import { LoadingService } from '../service/loading.service';
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
@@ -28,39 +29,61 @@ export class CategoryPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router  // Inject Router service
-  ) {}
+    private router: Router,  // Inject Router service
+    private loadingService: LoadingService
+  ) {
+    
+  }
 
-  ngOnInit(): void {
-    // Fetch brand list from the API
-    this.api.api.brandsList({ size: 10, page: 1 })
-      .then((res) => res.json())
-      .then((fulfilled) => {
-        this.brandArray = fulfilled;
-        console.log(this.brandArray);
-      })
-      .catch((error) => {
-        console.error('Error fetching brand list:', error);
-      });
-
-    // Fetch products from the API
-    this.api.api.productsPublicList()
-      .then((res) => res.json())
-      .then((fulfilled) => {
-        this.productCache = fulfilled;
-        this.filterProducts(); // Initial filter and pagination setup
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
-      });
-
+  async ngOnInit(): Promise<void> {
+    this.loadingService.startLoading();
+    // Check if products are already stored in localStorage
+    const storedProducts = localStorage.getItem('productCache');
+    const storedBrands = localStorage.getItem('brandArray');
+  
+    if (storedProducts && storedBrands) {
+      // Parse and use the stored data if available
+      this.productCache = JSON.parse(storedProducts);
+      this.brandArray = JSON.parse(storedBrands);
+      console.log('Loaded products and brands from localStorage');
+      this.filterProducts(); // Initial filter and pagination setup
+    } else {
+      // Fetch brand list from the API and store it in localStorage
+      await this.api.api.brandsList({ size: 10, page: 1 })
+        .then((res) => res.json())
+        .then((fulfilled) => {
+          this.brandArray = fulfilled;
+          localStorage.setItem('brandArray', JSON.stringify(fulfilled));
+          console.log('Brand list fetched and stored in localStorage');
+        })
+        .catch((error) => {
+          console.error('Error fetching brand list:', error);
+        });
+  
+      // Fetch products from the API and store them in localStorage
+      await this.api.api.productsPublicList()
+        .then((res) => res.json())
+        .then((fulfilled) => {
+          this.productCache = fulfilled;
+          localStorage.setItem('productCache', JSON.stringify(fulfilled));
+          console.log('Product list fetched and stored in localStorage');
+          this.filterProducts(); // Initial filter and pagination setup
+        })
+        .catch((error) => {
+          console.error('Error fetching products:', error);
+        });
+    }
+  
     // Subscribe to route parameters to capture the 'selected' parameter
     this.route.paramMap.subscribe(params => {
       const selectedBrand = params.get('selected');
       this.selectedBrandId = selectedBrand ? parseInt(selectedBrand, 10) : null; // Update selected brand ID based on URL
       this.filterProducts();
     });
+
+    this.loadingService.stopLoading();
   }
+  
 
   // Filter products based on selected brand and price range
   filterProducts(): void {

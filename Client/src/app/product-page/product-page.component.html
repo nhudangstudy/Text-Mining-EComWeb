@@ -126,7 +126,48 @@
       <p>{{ product.faqs }}</p>
     </div>
   </div>
-
+  <div *ngIf="isLoggedIn; else loginNotice">
+    <h4>Write a Review</h4>
+    <form (ngSubmit)="submitReview()">
+      <div class="form-group mb-2">
+        <input
+          type="text"
+          [(ngModel)]="reviewTitle"
+          name="reviewTitle"
+          class="form-control"
+          placeholder="Review Title"
+          required
+        />
+      </div>
+      <div class="form-group mb-2">
+        <label for="starRating">Star Rating:</label>
+        <select
+          [(ngModel)]="starRating"
+          name="starRating"
+          class="form-select"
+          required
+        >
+          <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">
+            {{ rating }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group mb-2">
+        <textarea
+          [(ngModel)]="reviewContent"
+          name="reviewContent"
+          class="form-control"
+          placeholder="Write your review here..."
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+    </form>
+  </div>
+  <ng-template #loginNotice>
+    <p class="text-warning">Please log in to post a review.</p>
+  </ng-template>
+  
   <!-- Similar Products Section -->
   <h3 class="mt-5">You might also like</h3>
   <div class="row">

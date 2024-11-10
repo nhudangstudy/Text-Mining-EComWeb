@@ -91,7 +91,8 @@ namespace API.Controllers
                 ImageUrl = r.ImageUrl,
                 StarRating = r.StarRating,
                 ReviewContent = r.ReviewContent,
-                OwnedBy = r.OwnedBy
+                OwnedBy = r.OwnedBy,
+                Sentiment = r.Sentiment
             });
 
             return Ok(response);

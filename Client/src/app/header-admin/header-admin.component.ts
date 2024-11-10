@@ -19,9 +19,4 @@ export class HeaderAdminComponent {
   logout() {
     this.authService.logout();
   }
-
-  toggleDropdown(event: Event): void {
-    event.preventDefault(); // Prevent default anchor behavior
-    // Your logic to toggle the dropdown menu
-  }
 }

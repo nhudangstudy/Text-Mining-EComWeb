@@ -12,10 +12,13 @@ import { AdminOverviewComponent } from './admin-overview/admin-overview.componen
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminReportComponent } from './admin-report/admin-report.component';
 import { AdminTransactionComponent } from './admin-transaction/admin-transaction.component';
+import { AdminGuard } from './service/admin.guard';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthenticatedGuard] },
   { path: 'landing', component: LandingComponent }, // Add AuthGuard if needed
+  { path: 'signup', component: SignupComponent, canActivate: [AuthenticatedGuard]}, // Add AuthGuard if needed
   { path: 'category', component: CategoryPageComponent },
   { path: 'product/:selected', component: ProductPageComponent },
   { path: 'category/:selected', component: CategoryPageComponent },
@@ -31,6 +34,7 @@ const routes: Routes = [
       { path: 'report', component: AdminReportComponent },
       { path: '', redirectTo: 'overview', pathMatch: 'full' }, // Default to Overviewre
     ],
+    canActivate: [AdminGuard]
   },
 
   // Default Route

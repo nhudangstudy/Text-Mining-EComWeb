@@ -4,14 +4,15 @@ import { LoadingService } from '../service/loading.service';
 @Component({
   selector: 'app-loading',
   template: `
-    <div *ngIf="loading$ | async" class="loading-overlay">
-      <div class="spinner"></div>
+    <div *ngIf="loadingService.loading$ | async" class="loading-overlay">
+      <div class="loading-animation">
+        <!-- Custom loading animation -->
+        <div class="spinner"></div>
+      </div>
     </div>
   `,
-  styleUrls: ['./loading.component.css']
+  styleUrls: ['./loading.component.css'] // Adjust path if needed
 })
 export class LoadingComponent {
-  loading$ = this.loadingService.loading$;
-
-  constructor(private loadingService: LoadingService) {}
+  constructor(public loadingService: LoadingService) {}
 }

@@ -4,10 +4,25 @@
   }
   
   .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     cursor: pointer;
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    padding: 0; /* Remove any extra padding */
   }
+  
+  .dropdown-toggle i {
+    font-size: 24px; /* Adjust size as needed */
+  }
+  .bi-person-circle {
+    font-size: 24px; /* Adjust size as needed */
+    padding: 8px; /* Add 8px padding */
+  }
+  
   
   .dropdown-menu {
     position: absolute;

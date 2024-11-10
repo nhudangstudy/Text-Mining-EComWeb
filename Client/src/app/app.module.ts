@@ -32,6 +32,7 @@ import { UserIconComponent } from './user-icon/user-icon.component';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts'; // Import NgxChartsModule
 import { AdminReportComponent } from './admin-report/admin-report.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { AdminReportComponent } from './admin-report/admin-report.component';
     AdminTransactionComponent,
     UserIconComponent,
     AdminReportComponent,
+    SignupComponent,
 
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgxSliderModule, NouisliderModule, CommonModule, NgxChartsModule  ],

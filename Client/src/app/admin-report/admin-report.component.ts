@@ -1,10 +1,8 @@
 // admin-report.component.ts
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Api, HttpResponse, ReviewResponseModel } from 'src/myApi';
-import { SentimentService
+import { LoadingService } from '../service/loading.service';
 
-
- } from '../service/sentiment.service';
 interface ReviewWithSentiment extends ReviewResponseModel {
   sentiment?: string;
 }
@@ -39,20 +37,20 @@ export class AdminReportComponent implements OnInit {
     domain: ['#28a745', '#ffc107', '#dc3545'] // Green, Yellow, Red
   };
 
-  constructor(private sentimentService: SentimentService, private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.fetchReviews();
   }
 
   async fetchReviews(): Promise<void> {
+    this.loadingService.startLoading();
     try {
-      const response: HttpResponse<ReviewResponseModel[]> = await this.api.api.reviewsFeaturedList({ count: 10, minimumRating: 1 });
+      const response: HttpResponse<ReviewResponseModel[]> = await this.api.api.reviewsFeaturedList({ count: 170, minimumRating: 1 });
       console.log('API response:', response);
       const responseBody = response.data;
       if (responseBody && Array.isArray(responseBody)) {
         this.reviews = responseBody.map(review => review as ReviewWithSentiment);
-        await this.analyzeSentiments();
         this.cdr.detectChanges();
       } else {
         console.error('Unexpected response format or empty body.');
@@ -60,22 +58,9 @@ export class AdminReportComponent implements OnInit {
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
-  }
-
-  async analyzeSentiments(): Promise<void> {
-    const sentimentPromises = this.reviews.map(async review => {
-      try {
-        const sentimentResponse = await this.sentimentService.getSentiment(review.reviewContent!).toPromise();
-        review.sentiment = sentimentResponse.sentiment; // Adjust according to actual response structure
-      } catch (error) {
-        console.error(`Error analyzing sentiment for review ${review.id}:`, error);
-        review.sentiment = 'Unknown';
-      }
-    });
-
-    await Promise.all(sentimentPromises);
     this.calculateKPIs();
     this.cdr.detectChanges();
+    this.loadingService.stopLoading();
   }
 
   calculateKPIs(): void {

@@ -15,6 +15,7 @@ using AspNetCoreRateLimit;
 using ITBClub.API.Repositories;
 using Microsoft.Extensions.Configuration;
 using API.Repositories.API.Repositories;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<BrandService>().As<IBrandService>();
     containerBuilder.RegisterType<ProductService>().As<IProductService>();
     containerBuilder.RegisterType<ReviewService>().As<IReviewService>();
+
+
     // Register other dependencies here
 
 
@@ -140,7 +143,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddHttpClient<ISentimentService, SentimentService>();
 //Setting security
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
        .AddJwtBearer(AuthenticationCore.Options(config));

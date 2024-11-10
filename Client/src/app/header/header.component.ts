@@ -20,16 +20,5 @@ export class HeaderComponent {
     // Your existing service logic to log the user out
     this.authService.logout(); // Replace with your actual logout logic
   }
-  
 
-  toggleDropdown(event: Event): void {
-    event.preventDefault(); // Prevent default anchor behavior
-    // Your existing logic to toggle the dropdown menu, if applicable
-  }
-  
-
-  goToProfile() {
-    console.log('Navigating to profile...');
-    // Implement navigation logic here
-  }
 }
