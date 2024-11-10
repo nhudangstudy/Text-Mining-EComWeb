@@ -129,7 +129,7 @@
   <div *ngIf="isLoggedIn; else loginNotice">
     <h4>Write a Review</h4>
     <form (ngSubmit)="submitReview()">
-      <div class="form-group mb-2">
+      <div class="form-group mb-2 font-actor">
         <input
           type="text"
           [(ngModel)]="reviewTitle"
@@ -139,8 +139,8 @@
           required
         />
       </div>
-      <div class="form-group mb-2">
-        <label for="starRating">Star Rating:</label>
+      <div class="form-group mb-2 font-actor">
+        <label for="starRating font-actor">Star Rating:</label>
         <select
           [(ngModel)]="starRating"
           name="starRating"
@@ -152,7 +152,7 @@
           </option>
         </select>
       </div>
-      <div class="form-group mb-2">
+      <div class="form-group mb-2 font-actor">
         <textarea
           [(ngModel)]="reviewContent"
           name="reviewContent"
@@ -161,7 +161,8 @@
           required
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+      <a class="btn btn-primary btn-outline-dark mt-20 text-light text-left rounded-pill font-actor"
+          >Submit Review</a>
     </form>
   </div>
   <ng-template #loginNotice>
