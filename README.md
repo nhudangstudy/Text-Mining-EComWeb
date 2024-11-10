@@ -80,6 +80,10 @@ This is a full-stack application for text mining and sentiment analysis on e-com
      ```bash
      npm install
      ```
+     In case that does not work, you can try this instead:
+     ```bash
+     npm i --legacy-peer-deps
+     ```
    - Run the Angular application:
      ```bash
      ng serve
