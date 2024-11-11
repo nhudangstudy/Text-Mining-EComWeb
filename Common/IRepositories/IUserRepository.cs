@@ -9,5 +9,7 @@ namespace Common.IRepositories
 {
     public interface IUserRepository: IRepositoryAutoMap, IGetByIdRepositoryAutoMap<string>
     {
+        Task<GetByIdUserModel?> GetUserByIdAsync(string email);
+        Task CreateNewUser(string email, CreateUpdateUserRequestModel model);
     }
 }

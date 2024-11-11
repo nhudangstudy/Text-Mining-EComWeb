@@ -1,0 +1,349 @@
+<app-header></app-header>
+
+<div class="container my-5" style="padding-top: 70px">
+  <!-- Product Header Section -->
+  <div class="row">
+    <div class="col-md-5 ">
+        <img
+          [src]="product.productImages[0].imageUrl"
+          alt="{{ product.productName }}"
+          class="img-fluid limited-size"
+        />
+      </div>
+    <div class="col-md-7">
+      <h1 class="product-title font-actor">{{ product.productName }}</h1>
+      <div class="d-flex align-items-center my-2">
+        <div class="rating my-2">
+          <i
+            class="bi bi-star-fill"
+            *ngFor="let star of [].constructor(5); let i = index"
+            [ngClass]="{
+              'text-warning': i < 5,
+              'text-muted': i >= 5
+            }"
+          ></i>
+        </div>
+      </div>
+      <div class="price mb-3 font-actor">
+        {{ product.productPriceHistories[0].price * (1 - product.productPriceHistories[0].discount)| currency }}
+        <span class="original-price" *ngIf="product.productPriceHistories[0].discount">
+          {{ product.productPriceHistories[0].price | currency }}
+        </span>
+      </div>
+
+      <!-- Short description -->
+      <p class="product-description font-actor">{{ product.productShortDescription }}</p>
+
+      <!-- Color selection -->
+      <h6 class ='text-bold font-actor'>Select Colors</h6>
+      <div class="color-options">
+        <div
+          *ngFor="let color of product.productColors"
+          class="color-circle"
+          [ngStyle]="{ 'background-color': color.colorHex }"
+          (click)="selectColor(color)"
+          [ngClass]="{ 'selected-color': color === selectedColor }"
+        ></div>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <input type="number" min="1" [(ngModel)]="quantity" class="form-control quantity-input me-3" />
+        <a class="btn btn-primary btn-outline-dark mt-20 text-light text-left rounded-pill font-actor"
+          >Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Tabs Section -->
+  <ul class="nav nav-tabs my-4" id="productTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="reviews-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#reviews"
+        type="button"
+        role="tab"
+        aria-controls="reviews"
+        aria-selected="true"
+      >
+        Rating & Reviews
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="details-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#details"
+        type="button"
+        role="tab"
+        aria-controls="details"
+        aria-selected="false"
+      >
+        Product Details
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="faq-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#faq"
+        type="button"
+        role="tab"
+        aria-controls="faq"
+        aria-selected="false"
+      >
+        FAQs
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="productTabsContent">
+    <div
+      class="tab-pane fade show active"
+      id="reviews"
+      role="tabpanel"
+      aria-labelledby="reviews-tab"
+    >
+        <app-comments-list [reviews]="reviews"></app-comments-list>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="details"
+      role="tabpanel"
+      aria-labelledby="details-tab"
+    >
+      <p>{{ product.productDetailDescription }}</p>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="faq"
+      role="tabpanel"
+      aria-labelledby="faq-tab"
+    >
+      <p>{{ product.faqs }}</p>
+    </div>
+  </div>
+  <div *ngIf="isLoggedIn; else loginNotice">
+    <h4>Write a Review</h4>
+    <form (ngSubmit)="submitReview()">
+      <div class="form-group mb-2 font-actor">
+        <input
+          type="text"
+          [(ngModel)]="reviewTitle"
+          name="reviewTitle"
+          class="form-control"
+          placeholder="Review Title"
+          required
+        />
+      </div>
+      <div class="form-group mb-2 font-actor">
+        <label for="starRating font-actor">Star Rating:</label>
+        <select
+          [(ngModel)]="starRating"
+          name="starRating"
+          class="form-select"
+          required
+        >
+          <option *ngFor="let rating of [1, 2, 3, 4, 5]" [value]="rating">
+            {{ rating }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group mb-2 font-actor">
+        <textarea
+          [(ngModel)]="reviewContent"
+          name="reviewContent"
+          class="form-control"
+          placeholder="Write your review here..."
+          required
+        ></textarea>
+      </div>
+      <a class="btn btn-primary btn-outline-dark mt-20 text-light text-left rounded-pill font-actor"
+          >Submit Review</a>
+    </form>
+  </div>
+  <ng-template #loginNotice>
+    <p class="text-warning">Please log in to post a review.</p>
+  </ng-template>
+  
+  <!-- Similar Products Section -->
+  <h3 class="mt-5">You might also like</h3>
+  <div class="row">
+    <div class="col-md-4 col-lg-3" *ngFor="let product of similarProducts">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+  
+</div>
+
+<section
+  id="newsletter"
+  class="bg-black text-white py-5"
+  style="border-radius: 30px; margin: 0 20px"
+>
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left part: Text -->
+      <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+        <h2 class="mb-0">
+          STAY UP TO DATE ABOUT <br />
+          OUR LATEST OFFERS
+        </h2>
+      </div>
+
+      <!-- Right part: Email Input and Subscribe Button -->
+      <div class="col-md-6 text-center">
+        <form
+          class="d-flex flex-column align-items-center"
+          style="max-width: 400px; margin: 0 auto"
+        >
+          <div class="input-group mb-3 w-100">
+            <span
+              class="input-group-text bg-white border-0 rounded-pill-start"
+              style="padding: 0 20px"
+            >
+              <i class="bi bi-envelope"></i>
+            </span>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter your email address"
+              aria-label="Enter your email address"
+              style="border-radius: 0 50px 50px 0; height: 50px"
+            />
+          </div>
+          <button
+            class="btn btn-light rounded-pill w-100 text-dark"
+            style="height: 50px"
+          >
+            Subscribe to Newsletter
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-light pt-5 pb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h1 style="font-size: 2rem">
+          <span class="text-secondary font-anton">l</span>
+          <span class="text-primary font-anton">okey</span>
+          <span class="text-secondary font-anton">tech</span>
+        </h1>
+        <p class="text-dark font-actor">
+          We have smartphone to help you live a smarter and better life.
+        </p>
+        <div class="social-icons">
+          <a href="#" class="text-dark font-actor me-2"
+            ><i class="bi bi-twitter"></i
+          ></a>
+          <a href="#" class="text-dark font-actor me-2"
+            ><i class="bi bi-facebook"></i
+          ></a>
+          <a href="#" class="text-dark font-actor me-2"
+            ><i class="bi bi-instagram"></i
+          ></a>
+          <a href="#" class="text-dark font-actor"
+            ><i class="bi bi-github"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">Company</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">About</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Features</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Works</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Career</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">Help</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Customer Support</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Delivery Details</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Terms & Conditions</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Privacy Policy</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-2">
+        <h5 class="text-dark font-actor">FAQ</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Account</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Manage Deliveries</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Orders</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline">Payments</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3">
+        <h5 class="text-dark font-actor">Resources</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Free eBooks</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Development Tutorial</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >How to Blog</a
+            >
+          </li>
+          <li>
+            <a href="#" class="text-gray font-actor no-underline"
+              >Youtube Playlist</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

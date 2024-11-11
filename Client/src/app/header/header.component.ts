@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, NgZone } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -8,11 +8,17 @@ import { AuthService } from '../service/auth.service';
 })
 export class HeaderComponent {
   @Input() isNavbarVisible: boolean = true;
-  
   isLoggedIn: boolean = false;
+  isDropdownOpen: boolean = false;
 
-  constructor(private authService: AuthService) {
-    // Check if the user is logged in (replace with your actual auth check)
+  constructor(private authService: AuthService, private ngZone: NgZone) {
+    // Check if the user is logged in
     this.isLoggedIn = this.authService.isAuthenticated();
   }
+
+  logout(): void {
+    // Your existing service logic to log the user out
+    this.authService.logout(); // Replace with your actual logout logic
+  }
+
 }

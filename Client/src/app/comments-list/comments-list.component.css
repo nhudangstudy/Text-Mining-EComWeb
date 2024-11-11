@@ -1,0 +1,10 @@
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between review cards */
+  }
+  
+  .btn {
+    align-self: center; /* Center the "Load More Reviews" button */
+  }
+  

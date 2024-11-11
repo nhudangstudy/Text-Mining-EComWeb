@@ -42,7 +42,8 @@ public partial class TextMiningDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:LLL");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=lllk21416c.database.windows.net;Database=TextMining;User Id=anhhoangdev;Password=kamadoJr1@;Encrypt=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,7 +58,9 @@ public partial class TextMiningDbContext : DbContext
 
         modelBuilder.Entity<AppAuthentication>(entity =>
         {
-            entity.ToTable("App_Authentication");
+            entity.HasKey(e => e.Id).HasName("PK_App_Authentication");
+
+            entity.ToTable("APP_Authentication");
 
             entity.Property(e => e.Code)
                 .HasMaxLength(6)
@@ -136,6 +139,15 @@ public partial class TextMiningDbContext : DbContext
             entity.Property(e => e.OwnedBy).HasMaxLength(128);
             entity.Property(e => e.ProductName).HasMaxLength(512);
 
+            entity.HasOne(d => d.Brand).WithMany(p => p.Products)
+                .HasForeignKey(d => d.BrandId)
+                .HasConstraintName("FK_Product_Brand");
+
+            entity.HasOne(d => d.OwnedByNavigation).WithMany(p => p.Products)
+                .HasForeignKey(d => d.OwnedBy)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Product_APP_Account");
+
             entity.HasOne(d => d.SubCategory).WithMany(p => p.Products)
                 .HasForeignKey(d => d.SubCategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -194,12 +206,19 @@ public partial class TextMiningDbContext : DbContext
                 .HasColumnName("ASIN");
             entity.Property(e => e.ImageUrl).HasMaxLength(500);
             entity.Property(e => e.OwnedBy).HasMaxLength(128);
+            entity.Property(e => e.ReviewDate).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Sentiment).HasMaxLength(50);
             entity.Property(e => e.Title).HasMaxLength(500);
 
             entity.HasOne(d => d.AsinNavigation).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.Asin)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Reviews_Product");
+
+            entity.HasOne(d => d.OwnedByNavigation).WithMany(p => p.Reviews)
+                .HasForeignKey(d => d.OwnedBy)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Reviews_APP_Account");
         });
 
         modelBuilder.Entity<SubCategory>(entity =>

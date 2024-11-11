@@ -4,8 +4,8 @@
         "title": "Quick Start",
         "description": "<p>Documentation API of <b>Text Mining Project</b> has been written by Live Laugh Love.</p><p><b><i>This is an internal resource. Do not share it in any way.</i></b></p><p>You should read carefully the descriptions, response status codes and arguments request belong to each API Resource. It take your time, but you will avoid a lot of bugs afterward.</p><b>The application case sensitive.</b>",
         "contact": {
-            "name": "anhhoangdev",
-            "email": "anhth21416c@st.uel.edu.vn"
+            "name": "nhudangstudy, anhhoangdev, cocaa",
+            "email": "nhucnh21416c@st.uel.edu.vn, anhth21416c@st.uel.edu.vn, hienttm21416c@st.uel.edu.vn"
         },
         "version": "3.0.45.156"
     },
@@ -321,6 +321,788 @@
                 }
             }
         },
+        "/api/brands/{id}": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Brands"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBrandModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBrandModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateBrandModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Brands"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/brands": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Brands"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateBrandModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateBrandModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateBrandModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCategoryModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCategoryModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCategoryModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCategoryModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCategoryModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCategoryModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/products/public": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/products/admin": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/products/{asin}": {
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "asin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequestModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequestModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductRequestModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "asin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponseModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponseModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponseModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/products/{asin}/price": {
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "parameters": [
+                    {
+                        "name": "asin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductPriceModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductPriceModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductPriceModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/reviews/product/{asin}": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "parameters": [
+                    {
+                        "name": "asin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews/user/{email}": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews/featured": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "parameters": [
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 4
+                        }
+                    },
+                    {
+                        "name": "minimumRating",
+                        "in": "query",
+                        "schema": {
+                            "type": "number",
+                            "format": "double",
+                            "default": 4
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponseModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reviews/{asin}": {
+            "post": {
+                "tags": [
+                    "Review"
+                ],
+                "parameters": [
+                    {
+                        "name": "asin",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateReviewRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateReviewRequest"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateReviewRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/sub-categories/{id}": {
+            "get": {
+                "tags": [
+                    "SubCategories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "SubCategories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateSubCategoryModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateSubCategoryModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateSubCategoryModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "SubCategories"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/sub-categories": {
+            "get": {
+                "tags": [
+                    "SubCategories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "SubCategories"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSubCategoryModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSubCategoryModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateSubCategoryModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "/token": {
             "post": {
                 "tags": [
@@ -518,6 +1300,84 @@
                     }
                 }
             }
+        },
+        "/user/{email}": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUpdateUserRequestModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUpdateUserRequestModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUpdateUserRequestModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetByIdPublicAccountModel"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetByIdPublicAccountModel"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetByIdPublicAccountModel"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -560,6 +1420,224 @@
                     }
                 },
                 "additionalProperties": false
+            },
+            "CreateBrandModel": {
+                "type": "object",
+                "properties": {
+                    "brandName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateCategoryModel": {
+                "type": "object",
+                "properties": {
+                    "categoryName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "categoryDescription": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateProductColorModel": {
+                "type": "object",
+                "properties": {
+                    "colorHex": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateProductImageModel": {
+                "type": "object",
+                "properties": {
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateProductPriceModel": {
+                "type": "object",
+                "properties": {
+                    "price": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "discount": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateProductRequestModel": {
+                "type": "object",
+                "properties": {
+                    "asin": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "subCategoryId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "brandId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "ownedBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productShortDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productDetailDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productColors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateProductColorModel"
+                        },
+                        "nullable": true
+                    },
+                    "productImages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateProductImageModel"
+                        },
+                        "nullable": true
+                    },
+                    "productPriceHistories": {
+                        "$ref": "#/components/schemas/CreateProductPriceModel"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateReviewRequest": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "starRating": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "reviewContent": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateSubCategoryModel": {
+                "type": "object",
+                "properties": {
+                    "categoryId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "subCategoryName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "subCategoryDescription": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateUpdateUserRequestModel": {
+                "required": [
+                    "dateOfBirth",
+                    "firstName",
+                    "lastName"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "dateOfBirth": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DateOnly": {
+                "type": "object",
+                "properties": {
+                    "year": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "month": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "day": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "dayOfWeek": {
+                        "$ref": "#/components/schemas/DayOfWeek"
+                    },
+                    "dayOfYear": {
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true
+                    },
+                    "dayNumber": {
+                        "type": "integer",
+                        "format": "int32",
+                        "readOnly": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DayOfWeek": {
+                "enum": [
+                    "sunday",
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday"
+                ],
+                "type": "string"
             },
             "GetAccessByRefreshRequestTokenModel": {
                 "required": [
@@ -645,6 +1723,119 @@
                 },
                 "additionalProperties": false
             },
+            "ProductColorResponseModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "colorHex": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ProductImageResponseModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isArchived": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ProductPriceHistoryResponseModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "discount": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "dateUpdated": {
+                        "$ref": "#/components/schemas/DateOnly"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ProductResponseModel": {
+                "type": "object",
+                "properties": {
+                    "asin": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "subCategoryId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "brandId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "ownedBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productShortDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productDetailDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isArchived": {
+                        "type": "boolean"
+                    },
+                    "productColors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductColorResponseModel"
+                        },
+                        "nullable": true
+                    },
+                    "productImages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductImageResponseModel"
+                        },
+                        "nullable": true
+                    },
+                    "productPriceHistories": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductPriceHistoryResponseModel"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
             "RefreshTokenModel": {
                 "required": [
                     "expire",
@@ -710,6 +1901,44 @@
                 },
                 "additionalProperties": false
             },
+            "ReviewResponseModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "asin": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "title": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "starRating": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "reviewContent": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "ownedBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sentiment": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
             "SendRequestAuthenticationModel": {
                 "required": [
                     "email"
@@ -720,6 +1949,44 @@
                         "minLength": 1,
                         "type": "string",
                         "format": "email"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateBrandModel": {
+                "type": "object",
+                "properties": {
+                    "brandName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateCategoryModel": {
+                "type": "object",
+                "properties": {
+                    "categoryName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "categoryDescription": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateSubCategoryModel": {
+                "type": "object",
+                "properties": {
+                    "subCategoryName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "subCategoryDescription": {
+                        "type": "string",
+                        "nullable": true
                     }
                 },
                 "additionalProperties": false

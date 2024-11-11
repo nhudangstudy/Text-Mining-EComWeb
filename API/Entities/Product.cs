@@ -21,6 +21,10 @@ public partial class Product
 
     public bool IsArchived { get; set; }
 
+    public virtual Brand? Brand { get; set; }
+
+    public virtual AppAccount OwnedByNavigation { get; set; } = null!;
+
     public virtual ICollection<ProductColor> ProductColors { get; set; } = new List<ProductColor>();
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();

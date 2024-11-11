@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Api, GetByLoginTokenModel, GetAccessByRefreshRequestTokenModel } from 'src/myApi'
 import { environment } from 'src/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
+import { MessageBoxService } from './message-box-service.service';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +17,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<GetByLoginTokenModel | null>(null);
   public currentUser = this.currentUserSubject.asObservable();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private messageBoxService: MessageBoxService) {}
 
   login(email: string, password: string): Observable<GetByLoginTokenModel> {
     const loginData = { clientId: email, password };
@@ -30,6 +34,25 @@ export class AuthService {
       );
     });
   }
+
+  getDecodedToken(): any {
+    const token = this.getToken();
+    if (token) {
+      try {
+        return jwtDecode(token);
+      } catch (error) {
+        console.error('Failed to decode token', error);
+        return null;
+      }
+    }
+    return null;
+  }
+  
+  hasRole(role: string): boolean {
+    const decodedToken = this.getDecodedToken();
+    return decodedToken?.role?.includes(role) ?? false;
+  }
+
 
   private handleAuthentication(accessToken: any, refreshToken: any): void {
     const expiresIn = new Date(accessToken.expire).getTime() - new Date().getTime();
@@ -81,13 +104,15 @@ export class AuthService {
   }
 
   logout(): void {
+    this.router.navigate(['/login']);
+
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('tokenExpirationDate');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
-    this.router.navigate(['/login']);
+    this.messageBoxService.success("Logout sucess!!!")
   }
 
   autoLogout(expirationDuration: number): void {

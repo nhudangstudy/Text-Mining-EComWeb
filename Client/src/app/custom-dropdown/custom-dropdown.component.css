@@ -1,0 +1,48 @@
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    padding: 0; /* Remove any extra padding */
+  }
+  
+  .dropdown-toggle i {
+    font-size: 24px; /* Adjust size as needed */
+  }
+  .bi-person-circle {
+    font-size: 24px; /* Adjust size as needed */
+    padding: 8px; /* Add 8px padding */
+  }
+  
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Aligns below the button */
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    z-index: 1050; /* Ensure it overlays other elements */
+  }
+  
+  .dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  

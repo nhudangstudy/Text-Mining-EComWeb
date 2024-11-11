@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "http://e8e29525-2a4f-41b9-a00f-ea0ea858e1fc.southeastasia.azurecontainer.io",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
+  

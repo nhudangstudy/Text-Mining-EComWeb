@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Review } from '../Model/review-model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Api, ReviewResponseModel} from 'src/myApi';
 
 @Component({
   selector: 'app-review-card',
@@ -7,10 +7,13 @@ import { Review } from '../Model/review-model';
   styleUrls: ['./review-card.component.css']
 })
 export class ReviewCardComponent {
-  @Input() review!: Review;
+  @Input() review!: ReviewResponseModel;
   isExpanded = false;
+  private api = new Api();
 
   toggleText() {
     this.isExpanded = !this.isExpanded;
   }
+
+
 }

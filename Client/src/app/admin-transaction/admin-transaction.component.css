@@ -1,0 +1,24 @@
+.container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .transaction-id .icon {
+    margin-right: 8px;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  .btn-link {
+    text-decoration: none;
+  }
+  

@@ -20,6 +20,9 @@ namespace API.Services
             _mapper = mapper;
         }
 
+
+
+
         public async Task CreateNewUser(string email, CreateUpdateUserRequestModel createUpdateUserRequest)
         {
             var account = await _accountRepository.GetByIdAsync<GetByIdPublicAccountModel>(email);
@@ -46,6 +49,13 @@ namespace API.Services
             await _userRepository.CreateAsync(userInstance);
             await _unitOfWork.SaveChangesAsync();
 
+        }
+
+        public Task<GetByIdUserModel?> GetUserByIdAsync(string email)
+        {
+            var user = _userRepository.GetUserByIdAsync(email);
+            return user;
+            
         }
     }
 }

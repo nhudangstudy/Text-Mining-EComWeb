@@ -1,18 +1,24 @@
-<div class="card">
+<div class="card" (click)="navigateToProduct(product.asin ?? 'ABC123')">
     <div class="card-img-wrapper">
-      <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}" />
+      <img [src]="product.productImages?.[0]?.imageUrl" class="card-img-top" alt="{{ product.productName }}" />
     </div>
     <div class="card-body">
-      <h5 class="card-title font-actor">{{ product.name }}</h5>
+      <h5 class="card-title font-actor">{{ product.productName }}</h5>
       <div class="rating my-2">
-        <i class="bi bi-star-fill" *ngFor="let star of [].constructor(5); let i = index" [ngClass]="{'text-warning': i < product.rating, 'text-muted': i >= product.rating}"></i>
-        <span class="rating-text font-actor">{{ product.rating }}/5</span>
+        <i class="bi bi-star-fill" *ngFor="let star of [].constructor(5); let i = index" [ngClass]="{'text-warning': i < 4, 'text-muted': i >= 4}"></i>
+        <span class="rating-text font-actor">{{ 4 }}/5</span>
       </div>
       
       <div class="price-section font-actor">
-        <span class="current-price">${{ product.price }}</span>
-        <span *ngIf="product.oldPrice" class="old-price"><s>${{ product.oldPrice }}</s></span>
-        <span *ngIf="product.discount" class="badge discount-badge">{{ product.discount }}%</span>
+        <div *ngIf="product">
+          <span class="current-price">
+            ${{ ((product.productPriceHistories?.[0]?.price ?? 0) * 
+                  (1 - (product.productPriceHistories?.[0]?.discount ?? 0))) | number:'1.2-2' }}
+          </span>
+        </div>
+        
+        <span *ngIf="product.productPriceHistories?.[0]?.price" class="old-price"><s>${{ product.productPriceHistories?.[0]?.price }}</s></span>
+        <span *ngIf="product.productPriceHistories?.[0]?.discount" class="badge discount-badge">{{ product.productPriceHistories?.[0]?.discount! *100 }}%</span>
       </div>
     </div>
   </div>

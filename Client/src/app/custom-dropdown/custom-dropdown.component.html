@@ -1,0 +1,10 @@
+<div class="dropdown-container" (clickOutside)="closeDropdown()">
+    <button (click)="toggleDropdown()" class="dropdown-toggle">
+      <i class="bi bi-person-circle"></i>
+    </button>
+    <div *ngIf="isOpen" class="dropdown-menu">
+      <a class="dropdown-item" routerLink="/profile">Profile</a>
+      <button class="dropdown-item" (click)="logout()">Logout</button>
+    </div>
+  </div>
+  

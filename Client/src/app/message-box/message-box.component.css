@@ -1,0 +1,81 @@
+:host {
+    position: fixed;   /* Fixed position to place it on the screen */
+    left: 0;
+    bottom: 10px;     /* Adjust bottom spacing as needed */
+    z-index: 1000;    /* Adjust z-index as needed */
+    padding: 10px;    /* Optional: Add padding for spacing */
+    max-width: 100%;  /* Ensure it doesn't exceed the screen width */
+    display: flex;
+    justify-content: center;
+    animation: slideIn 0.5s forwards;  /* Animation to slide in from the left */
+  }
+  
+  /* Keyframes for slide-in animation */
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Customize other styles as per your design requirements */
+  .message-box {
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 600px; /* Adjust the width as needed */
+    margin: 0 auto;   /* Center the message box */
+    
+    &.success {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      color: #155724;
+    }
+  
+    &.error {
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      color: #721c24;
+    }
+  
+    &.warning {
+      background-color: #fff3cd;
+      border-color: #ffeeba;
+      color: #856404;
+    }
+  
+    &.info {
+      background-color: #d1ecf1;
+      border-color: #bee5eb;
+      color: #0c5460;
+    }
+  
+    .message-icon {
+      margin-right: 0.5rem;
+      font-size: 1.5rem;
+    }
+  
+    .message-text {
+      flex-grow: 1;
+    }
+  
+    .close-button {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: inherit;
+      cursor: pointer;
+    }
+  
+    .message-title {
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  

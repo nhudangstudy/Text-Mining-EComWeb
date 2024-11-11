@@ -19,5 +19,11 @@ public partial class Review
 
     public string ReviewContent { get; set; } = null!;
 
+    public DateOnly? ReviewDate { get; set; }
+
+    public string? Sentiment { get; set; }
+
     public virtual Product AsinNavigation { get; set; } = null!;
+
+    public virtual AppAccount OwnedByNavigation { get; set; } = null!;
 }

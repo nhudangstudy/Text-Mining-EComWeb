@@ -14,6 +14,7 @@ namespace API.Profiles
             CreateMap<AppAccount, GetLastNameByIdAccountModel>();
             CreateMap<AppAccount, GetFullNameByIdAccountModel>();
             CreateMap<ResetPasswordRequestRepoAccountModel, AppAccount>();
+            CreateMap<AppAccount, AppAccount>();
         }
     }
 }

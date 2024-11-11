@@ -17,6 +17,9 @@
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.DateOfBirth))) // Convert DateTime to DateOnly
                 .ForMember(dest => dest.IsArchived, opt => opt.Ignore());  // Optionally map or ignore other properties
+
+            CreateMap<User, CreateUpdateUserResponeModel>()
+               .ForMember(dest => dest.Message, opt => opt.MapFrom(src => "User operation successful"));
         }
     }
 }
