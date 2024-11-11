@@ -315,7 +315,7 @@ export enum ContentType {
 }
 
 export class HttpClient<SecurityDataType = unknown> {
-  public baseUrl: string = "https://localhost:7065";
+  public baseUrl: string = "https://lokeytechbackend-g0d2hdfeavape2ev.canadacentral-01.azurewebsites.net";
   private securityData: SecurityDataType | null = null;
   private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
   private abortControllers = new Map<CancelToken, AbortController>();
@@ -482,7 +482,7 @@ export class HttpClient<SecurityDataType = unknown> {
 /**
  * @title Quick Start
  * @version 3.0.45.156
- * @baseUrl https://localhost:7065
+ * @baseUrl https://lokeytechbackend-g0d2hdfeavape2ev.canadacentral-01.azurewebsites.net
  * @contact nhudangstudy, anhhoangdev, cocaa <nhucnh21416c@st.uel.edu.vn, anhth21416c@st.uel.edu.vn, hienttm21416c@st.uel.edu.vn>
  *
  * <p>Documentation API of <b>Text Mining Project</b> has been written by Live Laugh Love.</p><p><b><i>This is an internal resource. Do not share it in any way.</i></b></p><p>You should read carefully the descriptions, response status codes and arguments request belong to each API Resource. It take your time, but you will avoid a lot of bugs afterward.</p><b>The application case sensitive.</b>

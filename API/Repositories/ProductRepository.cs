@@ -64,25 +64,6 @@ namespace API.Repositories
                 }
             }
 
-            public async Task<IEnumerable<CreateProductModel>> GetAllAsync()
-            {
-                var products = await _dbContext.Set<Product>()
-                    .Include(p => p.ProductColors)
-                    .Include(p => p.ProductImages)
-                    .Include(p => p.ProductPriceHistories)
-                    .Include(p => p.SubCategory)
-                    .Select(p => new
-                    {
-                        Product = p,
-                        ReviewCount = _dbContext.Set<Review>().Count(r => r.Asin == p.Asin)
-                    })
-                    .OrderByDescending(p => p.ReviewCount)
-                    .Select(p => p.Product)
-                    .ToListAsync();
-
-                return _mapper.Map<IEnumerable<CreateProductModel>>(products);
-            }
-
             public async Task UpdateAsync(CreateProductRequestModel model)
             {
                 // Fetch the existing product with related data
@@ -128,44 +109,48 @@ namespace API.Repositories
             }
 
             public async IAsyncEnumerable<TModel> GetAllAsync<TModel>(
-                int? take = null,
-                int? skip = null,
-                Expression<Func<TModel, bool>>? condition = null,
-                bool readOnly = true) where TModel : class
+    int? take = null,
+    int? skip = null,
+    Expression<Func<TModel, bool>>? condition = null,
+    bool readOnly = true) where TModel : class
             {
-                var query = _dbContext.Set<Product>()
+                // Step 1: Get the primary keys of the top 100 products (or based on `take`)
+                var productKeysQuery = _dbContext.Set<Product>()
+                    .AsQueryable();
+
+                if (condition != null)
+                {
+                    productKeysQuery = productKeysQuery.Where(_mapper.Map<Expression<Func<Product, bool>>>(condition));
+                }
+
+                var productKeys = await productKeysQuery
+                    .OrderBy(_ => Guid.NewGuid())
+                    .Select(p => p.Asin) // Select only the primary key or unique identifier
+                    .Take(take ?? 100) // Fetch top `take` or 100 products' keys
+                    .ToListAsync();
+
+                // Step 2: Retrieve the full details for the filtered products using the keys
+                var fullProductsQuery = _dbContext.Set<Product>()
+                    .Where(p => productKeys.Contains(p.Asin))
                     .Include(p => p.ProductColors)
                     .Include(p => p.ProductImages)
                     .Include(p => p.ProductPriceHistories)
-                    .Include(p => p.SubCategory)
-                    .AsQueryable();
-                query = query.OrderBy(_ => Guid.NewGuid());
-                if (condition != null)
-                {
-                    query = query.Where(_mapper.Map<Expression<Func<Product, bool>>>(condition));
-                }
+                    .Include(p => p.SubCategory);
 
-                if (readOnly)
-                {
-                    query = query.AsNoTracking();
-                }
-
+                // Step 3: Apply skip if provided and stream results using async enumeration
                 if (skip.HasValue)
                 {
-                    query = query.Skip(skip.Value);
+                    fullProductsQuery = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Product, SubCategory>)fullProductsQuery.Skip(skip.Value);
                 }
 
-                if (take.HasValue)
-                {
-                    query = query.Take(take.Value);
-                }
-
-                var products = await query.ToListAsync();
-                foreach (var product in products)
+                await foreach (var product in fullProductsQuery.AsAsyncEnumerable())
                 {
                     yield return _mapper.Map<TModel>(product);
                 }
             }
+
+
+
 
             public async Task<TModel> GetByIdAsync<TModel>(string id) where TModel : class
             {
