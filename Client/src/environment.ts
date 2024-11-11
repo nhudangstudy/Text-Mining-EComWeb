@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:7065',
+    apiUrl: 'https://lokeytechbackend-g0d2hdfeavape2ev.canadacentral-01.azurewebsites.net',
   };
   

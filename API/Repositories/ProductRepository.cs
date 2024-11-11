@@ -67,21 +67,23 @@ namespace API.Repositories
             public async Task<IEnumerable<CreateProductModel>> GetAllAsync()
             {
                 var products = await _dbContext.Set<Product>()
-                    .Include(p => p.ProductColors)
-                    .Include(p => p.ProductImages)
-                    .Include(p => p.ProductPriceHistories)
-                    .Include(p => p.SubCategory)
-                    .Select(p => new
+                    .OrderByDescending(p => _dbContext.Set<Review>().Count(r => r.Asin == p.Asin))
+                    .Take(100) // Apply sorting and limit at the database level
+                    .Select(p => new // Select relevant fields before including related data
                     {
                         Product = p,
-                        ReviewCount = _dbContext.Set<Review>().Count(r => r.Asin == p.Asin)
+                        ProductColors = p.ProductColors.ToList(),
+                        ProductImages = p.ProductImages.ToList(),
+                        ProductPriceHistories = p.ProductPriceHistories.ToList(),
+                        SubCategory = p.SubCategory
                     })
-                    .OrderByDescending(p => p.ReviewCount)
-                    .Select(p => p.Product)
                     .ToListAsync();
 
-                return _mapper.Map<IEnumerable<CreateProductModel>>(products);
+                // Map to your model after fetching the data
+                return _mapper.Map<IEnumerable<CreateProductModel>>(products.Select(p => p.Product));
             }
+
+
 
             public async Task UpdateAsync(CreateProductRequestModel model)
             {
