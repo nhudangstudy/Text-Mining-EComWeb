@@ -13,7 +13,6 @@ namespace Common.IRepositories
     {
         Task AddWithDetailsAsync(CreateProductModel model);
         Task UpdateAsync(CreateProductRequestModel product);
-        Task<IEnumerable<CreateProductModel>> GetAllAsync();
 
     }
 
