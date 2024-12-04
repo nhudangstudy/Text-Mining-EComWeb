@@ -100,3 +100,5 @@ This is a full-stack application for text mining and sentiment analysis on e-com
 After starting both the API and Client, you can access the web interface in your browser at `http://localhost:4200`. The API provides endpoints for text mining and sentiment analysis, and the client allows you to interact with these features.
 
 ---
+
+Read more about this project at _**LLL_TextMining_LokeyTech_Word**_
