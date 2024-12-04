@@ -103,3 +103,5 @@ After starting both the API and Client, you can access the web interface in your
 
 ## Documentation
 Read more about this project at _**LLL_TextMining_LokeyTech_Word**_
+
+---
